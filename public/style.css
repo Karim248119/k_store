@@ -1,0 +1,133 @@
+
+.nav li :hover{
+    border: solid 1px rgb(8, 173, 240);
+ 
+    /* box-shadow: 0px 1px 2px 0px rgba(8,
+        173,
+        240, 0.7),
+            1px 2px 4px 0px rgba(8,
+                173,
+                240, 0.7),
+            2px 4px 8px 0px rgba(8,
+                173,
+                240, 0.7),
+            2px 4px 16px 0px rgba(8,
+                173,
+                240, 0.7); */
+    color: rgb(8, 173, 240);
+    border-radius: 3px;
+}
+.nav li{
+    padding: 0; 
+    margin: 0;
+
+}
+.nav ul {
+    padding: 0;
+    margin: 0;
+}
+li:hover{
+    color: rgb(8, 173, 240);
+
+}
+.NAV{
+    margin: -1px;
+margin-top: -30px;
+
+background-clip: none;}
+
+
+
+/* .home{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.cat {
+    height: 660px;
+    width: 900px;
+    padding: 50px;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 30px; 
+}
+.cat a {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+.cat a:hover{
+    transform: scale(1.1);
+    transition: all 1s ease;
+    cursor: pointer;
+
+}
+.elec{
+    grid-row: 1/2;
+    grid-column: 3/5;
+    background-color: brown;
+    background-image: url('https://www.zazzle.com/rlv/svc/view?realview=113301331244377145&design=5495a8d4-bca6-4a9a-be70-7bce0c118fa6&rlvnet=1&style=42mm&max_dim=1080&cacheDefeat=1692237907538');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+}
+.men{
+    grid-row: 1/3;
+    grid-column: 1/3;
+    background-color: aquamarine;
+    background-image: url('https://www.zazzle.com/rlv/svc/view?rlvnet=1&realview=113504132170640883&design=65507747-71bb-4248-8044-8dc82be27463&style=sunapp_mens_raglan_3_4_sleeve_20521&size=a_l&color=whiteblack&max_dim=644&cacheDefeat=1692219648977');
+        background-size: cover;
+        background-repeat: no-repeat;
+}
+.women{
+    grid-row: 2/4;
+        grid-column: 3/5;
+
+        background-image: url('https://www.zazzle.com/rlv/svc/view?rlvnet=1&realview=113108382770606547&design=1cbefbda-2f08-4f26-b878-6af90f912ea3&style=hanes_womens_nano_vneck_s04v&size=a_s&color=palepink_da&max_dim=644&cacheDefeat=1692229386206');
+        background-size: cover;
+        background-repeat: no-repeat;
+}
+
+.acc {
+    grid-row: 3/4;
+        grid-column: 1/3;
+        background-color: rgb(226, 121, 35);
+        background-image: url('https://www.zazzle.com/rlv/svc/view?realview=113458826264036659&design=868685b8-a237-404f-9410-04471c7c5b37&rlvnet=1&frame=navyblue&lenscolor=classicdark&max_dim=1080&cacheDefeat=1692240682683');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+} */
+
+.active{
+    color: rgb(8, 173, 240);
+}
+
+body{
+    background-color: rgb(255, 255, 255);
+    
+}
+
+.product:hover{
+        /* box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.7),
+                    1px 2px 4px 0px rgba(8, 9, 9, 0.7),
+                    2px 4px 8px 0px rgba(0, 0, 0, 0.7),
+                    2px 4px 16px 0px rgba(32, 39, 42, 0.7); */
+                    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+.product{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.center {
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
