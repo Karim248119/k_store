@@ -1,32 +1,22 @@
-import React, { useState } from "react";
-import Details from "./info";
-import { Link } from "react-router-dom";
-import { Button } from "flowbite-react";
-import { useShoppingCart } from "../context/ShopingCartContext";
-import { ADD_TO_CART, useCartContext } from "../context/Shopingcontext";
+import { useCartContext } from "../context/Shopingcontext";
+import * as actions from "../context/Actions";
 
 export default function Product ( { product } )
 {
-
-  const {
-    getproductsQuantity,
-    increaseCartQuantity,
-    decreaseCartQuantity,
-    removeproduct,
-  } = useShoppingCart();
-  const [ quantity, setQuantity ] = useState( 0 )
   const cartCotext = useCartContext()
-  console.log( cartCotext )
+  const storedFavourites = cartCotext.favourites.find( ( e ) => e.id === product.id )
+  const storedProducts = cartCotext.product.find( ( e ) => e.id === product.id )
+  const cartDisabled = storedProducts ? true : false
   return (
-    <div className="product rounded-lg ">
+    <div className="product rounded-lg md:mt-14 relative">
       <div className="h-full flex-col justify-between flex max-w-lg bg-white text-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700c product ">
-        <Link to={ `/product/${ product.id }` }>
-          <img
-            className=" md:max-h-56 max-h-52 w-56 m-auto p-4 rounded-3xl "
-            src={ product.image }
-            alt=""
-          />
-        </Link>
+
+        <img
+          className=" md:max-h-56 max-h-52 w-56 m-auto p-4 rounded-3xl "
+          src={ product.image }
+          alt=""
+        />
+
         <div className="p-5">
           <div>
             <h5 className="mb-2 md:text-xl self-start font-bold tracking-tight text-gray-900 dark:text-white  md:h-28 h-10 text-xs">
@@ -59,79 +49,43 @@ export default function Product ( { product } )
 
             {/* //////////////////////////////////////////////////button ////////////////////////////////////////////////////////////*/ }
             <div className="mx-auto">
-              { quantity === 0 ? (
-                <button
-                  onClick={ () =>
-                  {
-                    // increaseCartQuantity(product.id);
-                    // console.log(product.quantity);
-                    setQuantity( ( x ) => x + 1 )
-                  } }
-                  className=" self-center flex items-center px-3 py-2 text-[10px] md:text-lg font-medium text-center  bg-blue-gray-900 text-white rounded-lg hover:bg-light-blue-500 hover:text-blue-gray-900"
-                >
-                  Add To Cart
-                  <svg
-                    className="w-3.5 h-3.5 ml-2"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 14 10"
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M1 5h12m0 0L9 1m4 4L9 9"
-                    />
-                  </svg>
-                </button>
-              ) : (
-                <div className="flex flex-col">
-                  <div className="flex ">
-                    <button
-                      onClick={ () =>
-                      {
-                        // increaseCartQuantity(product.id);
+              <button
+                style={ {
+                  backgroundColor: storedProducts && " rgb(8, 173, 240)",
+                  color: storedProducts && " #282c34"
+                } }
+                disabled={ cartDisabled }
+                onClick={ () =>
+                {
+                  // increaseCartQuantity(product.id);
 
-                        cartCotext.productDispatch(
+                  cartCotext.productDispatch(
 
-                          {
-                            type: ADD_TO_CART,
-                            payload: product
-                          }
-                        )
-                      } }
-                      className=" px-3 py-2 md:px-4 text-[10px] md:text-lg font-medium text-center  bg-blue-gray-900 text-white rounded-lg hover:bg-light-blue-500 hover:text-blue-gray-900"
-                    >
-                      +
-                    </button>
-                    <span className="text-[10px] md:text-lg font-medium text-center  text-black my-auto mx-8">
-                      { quantity } in cart
-                    </span>
-                    <button
-                      onClick={ () =>
-                      {
-                        // decreaseCartQuantity(product.id);
-                        setQuantity( ( x ) => x - 1 )
-                      } }
-                      className=" px-3 py-2 md:px-4   text-[10px] md:text-lg font-medium text-center  bg-blue-gray-900 text-white rounded-lg hover:bg-light-blue-500 hover:text-blue-gray-900"
-                    >
-                      -
-                    </button>
-                  </div>
-                  <button
-                    onClick={ () =>
                     {
-                      // removeproduct(product.id);
-                      setQuantity( ( x ) => 0 )
-                    } }
-                    className=" mt-2 justify-self-center px-4 py-1 rounded-md mx-auto  text-[10px] md:text-lg font-medium text-center  bg-red-600 hover:bg-red-900"
-                  >
-                    Remove
-                  </button>
-                </div>
-              ) }
+                      type: actions.ADD_TO_CART,
+                      payload: product
+                    }
+                  )
+                } }
+                className=" self-center flex items-center px-3 py-2 text-[10px] md:text-lg font-medium text-center  bg-blue-gray-900 text-white rounded-lg hover:bg-light-blue-500 hover:text-blue-gray-900"
+              >
+                Add To Cart
+                <i class="fa-solid  fa-cart-shopping ml-2"></i>
+              </button>
+              <button
+                onClick={ () =>
+                {
+                  // increaseCartQuantity(product.id);
+
+                  cartCotext.productDispatch(
+
+                    {
+                      type: actions.TOGGLE_FAVOURITE,
+                      payload: product
+                    }
+                  )
+                } }
+                className=" absolute  top-4 right-4 text-blue-gray-900">{ storedFavourites ? <i class="fa-regular fa-solid fa-lg fa-heart blue"></i> : <i class="fa-regular fa-lg fa-heart"></i> }</button>
             </div>
           </div>
         </div>

@@ -1,23 +1,37 @@
 import { useCartContext } from "../context/Shopingcontext";
+import CartCard from "./CartCard";
+import { Footer } from "./Footer";
+import StickyNavbar from "./Nav";
 
 export default function ShoppingCart ()
 {
   const cartContext = useCartContext()
-  return <div>
-    {/* <video width="640" height="360" autoPlay className=" absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
-      <source src="../vid/clideo_editor_541b0260b44a4f3a96b341bbbd18230e.mp4" type="video/mp4" />
+  return <div className="">
+    <div className='gray w-full  min-h-[90vh]  '>
+      <StickyNavbar />
+      { cartContext.product.length > 0 ? (
+        <div className=" text-center md:w-[60%] w-[95%] bg-gray-300 m-auto rounded-xl table-shadow md:mt-32">
+          <div className=" grid md:grid-cols-12 grid-cols-10 capitalize p-5 gap-5 bg-blue-gray-900 text-white rounded-t-xl md:text-lg text-[10px]">
+            <div className=" col-span-3 md:col-span-5 ">product</div>
+            <div className=" col-span-2">quantity</div>
+            <div className=" col-span-1 text-center">price</div>
+            <div className=" col-span-2  text-center">total</div>
+            <div className=" col-span-1 text-center ">pay</div>
 
-    </video> */}
-    {/* {
-      cartContext.product.map( ( e ) => ( <div key={ e.id }>{ e.image }</div> ) )
-    } */}
+          </div>
+          <div classNa='grid md:grid-cols-5 grid-cols-3 gap-5 m-5'>
+            { cartContext.product.map( ( product ) => (
 
-    {/* <div className='gray w-full  md:min-h-[75vh]  '>
 
-      { cartContext.Product.length > 0 ? ( <div className='grid md:grid-cols-5 grid-cols-3 gap-5 m-5'>
-        { cartContext.Product.map( ( product ) => ( <div key={ product.id }> { product.image }</div> ) ) }
-      </div> ) : <div className='center font-bold w-52 md:w-auto flex justify-center'><h1 className=' text-lg md:text-4xl'>No Products In Ypur Caert!</h1> </div> }
-    </div> */}
-    { console.log( cartContext.Product ) }
+              <CartCard key={ product.id } product={ product } />
+            ) ) }
+          </div>
+
+        </div> ) : <div className='center font-bold w-52 md:w-auto flex justify-center'><h1 className=' text-lg md:text-4xl text-center'>No Products In Your Cart!</h1> </div> }
+    </div>
+    <div className=" mt-8" >
+      <Footer />
+    </div>
+
   </div>;
 }

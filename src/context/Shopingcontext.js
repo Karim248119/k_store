@@ -1,32 +1,31 @@
-import React, { createContext, useEffect, useReducer, useContext } from "react"
+import React, { createContext, useEffect, useReducer, useContext, useState } from "react"
+import { Reducer } from "./Reducer"
 
-const initState = localStorage.getItem( "product" ) ? JSON.parse( localStorage.getItem( "product" ) ) : []
-
+const initState = {
+    product: localStorage.getItem( "products" ) ? JSON.parse( localStorage.getItem( "products" ) ) : [],
+    favourites: localStorage.getItem( "favourite" ) ? JSON.parse( localStorage.getItem( "favourite" ) ) : []
+};
 export const GlobalContext = createContext()
-export const ADD_TO_CART = "ADD_TO_CART"
-const reducer = ( state, action ) =>
+
+export default function CartcontextProvider ( { children } )
 {
-    switch ( action.type )
-    {
-        case ADD_TO_CART: {
-            return [ ...state, action.payload ]
-        }
-        default: {
-            return state
-        }
-    }
-}
-export default function CartcontextProvider ( { Children } )
-{
-    const [ state, dispatch ] = useReducer( reducer, initState )
+
+    const [ state, dispatch ] = useReducer( Reducer, initState )
     useEffect( () =>
     {
-        localStorage.setItem( "product", JSON.stringify( state ) )
-    } )
-    console.log( "initial:", initState )
+        localStorage.setItem( "products", JSON.stringify( state.product ) )
+        localStorage.setItem( "favourite", JSON.stringify( state.favourites ) )
+    }, [ state ] )
+
+    const getQuantity = ( id ) =>
+    {
+        return state.filter( item => item.id === id )?.length || 0
+    }
+    const getAllQuantity = state.product?.length || 0
+
     return (
-        <GlobalContext.Provider value={ { Product: state, productDispatch: dispatch } }>
-            { Children }
+        <GlobalContext.Provider value={ { product: state.product, favourites: state.favourites, productDispatch: dispatch, getQuantity, getAllQuantity } }>
+            { children }
         </GlobalContext.Provider>
     )
 }

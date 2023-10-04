@@ -11,7 +11,7 @@ export default function ProductList ( props )
   const productData = products.map( ( product ) =>
   {
     return (
-      product.category == `${ props.category }` && (
+      product.category === `${ props.category }` && (
         <Product key={ product.id } product={ product } />
       )
     );
